@@ -1,0 +1,108 @@
+\documentclass[spanish, fleqn]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts,txfonts}
+\usepackage{mathrsfs}
+\usepackage[colorlinks, urlcolor=blue]{hyperref}
+\usepackage{fourier}
+\usepackage[top = 2.5cm, bottom = 2cm, left = 2cm, right = 2cm]{geometry}
+\usepackage{graphicx}
+
+
+
+
+\title{Elementos de Análisis para Computación e Informática \\
+Problemas de Métricas, Normas, y Sucesiones}
+
+\author{Martín Villanueva}
+\date{5 de abril 2016}
+
+\begin{document}
+\maketitle
+
+\section{Definiciones}
+Se listan a continuación algunas de las definiciones más importantes, utilizadas en la resolución de los problemas.
+
+\begin{itemize}
+    \item  \textbf{Densidad:} Un subconjunto $\mathbb{A}$ de un espacio métrico $(\mathbb{X},\rho)$ es \textit{denso} (en $\mathbb{X}$), si para cada $x \in \mathbb{X}$, cualquier vecindad de $x$ contiene al menos un elemento de A. Más formalmente:
+    \begin{equation}
+        \forall x \in \mathbb{X}, \forall \epsilon>0,\  \exists a \in \mathbb{A}: \rho(x, a)<\epsilon
+    \end{equation}
+    \item \textbf{Separable:} Un espacio métrico $(\mathbb{X},\rho)$ es \textit{separable}, si existe un subconjunto
+    numerable $\mathbb{D} \subset \mathbb{X}$ denso en $\mathbb{X}$.
+\end{itemize}
+
+\section{Problemas}
+
+\begin{itemize}
+    \item[1.] Se procede a verificar que $\rho$ es una métrica sobre $S(\mathbb{N})$:
+
+    \begin{itemize}
+        \item \textit{(no negatividad)} Por definición, $\rho: S(\mathbb{N})\times S(\mathbb{N}) \rightarrow \{0, \frac{1}{k}: k\in \mathbb{N}\}$.
+        \item \textit{(indiscernibles)} Por definición $\rho(\{a_n\}, \{b_n\})=0 \leftrightarrow \{a_n\}=\{b_n\}$.
+        \item \textit{(simetría)} Sean $\{a_n\},\{b_n\} \in S(\mathbb{N})$ dos sucesiones distintas. Luego:
+        \begin{equation*}
+            \rho(\{a_n\}, \{b_n\}) = (\min\{k \in \mathbb{N}: a_k \neq b_k\})^{-1} = (\min\{k \in \mathbb{N}: b_k \neq a_k\})^{-1} = \rho(\{b_n\}, \{a_n\}).
+        \end{equation*}
+        \item \textit{(desigualdad triangular)} Sean $\{a_n\},\{b_n\}, \{c_n\} \in S(\mathbb{N})$, y consideremos $k_1$  como el primer índice donde las sucesiones $(\{a_n\},\{b_n\})$ difieren, y $k_2$ el análogo para $(\{b_n\}, \{c_n\})$. Luego
+        se tienen dos casos:
+        \begin{enumerate}
+            \item ($k_2 > k_1$). Esto implíca que $a_{k_1} \neq b_{k_1} = c_{k_1}$. Entonces $\rho(\{a_n\},\{c_n\})=\frac{1}{k_1} > \frac{1}{k_2}$.
+            \item ($k_1 > k_2$). De modo análogo $a_{k_2} = b_{k_2} \neq c_{k_2}$. Entonces $\rho(\{a_n\},\{c_n\})=\frac{1}{k_2} > \frac{1}{k_1}$.
+        \end{enumerate}
+        Se concluye de ambos casos que $\rho(\{a_n\},\{c_n\}) = \max(\rho(\{a_n\},\{b_n\}),\ \rho(\{b_n\},\{c_n\})) \leq \rho(\{a_n\},\{b_n\}) +  \rho(\{b_n\},\{c_n\})$.
+    \end{itemize}
+
+    Denotemos la sucesión nula por $\overline{\mathbf{0}}$, entonces la bola unitaria centrada en $\overline{\mathbf{0}}$  queda
+    descrita por:
+    \begin{equation}
+        B_u = \{ \{a_n\} \in S(\mathbb{N}):\ \rho(\{a_n\}, \overline{\mathbf{0}}) \leq 1 \}
+    \end{equation}
+
+    sabemos por definición que $\rho(\{a_n\}, \overline{\mathbf{0}}) \leq 1, \ \forall \{a_n\} \in S(\mathbb{N})$ y por lo tanto $B_u \equiv S(\mathbb{N})$. Definamos $B_u' = B_u \setminus \{\overline{\mathbf{0}}\}$, claramente $B_u' \subset S(\mathbb{N})$ es un subconjunto numerable ($S(\mathbb{N})$ es numerable, y cualquier subconjunto de un conjunto numerable, también lo es). Como $B_u'$ y $S(\mathbb{N})$ coinciden en todos sus elementos excepto en $\overline{\mathbf{0}}$, basta con probar que:
+    \begin{equation}
+        \forall \epsilon >0, \ \exists \{a_n\}\in B_u': \ \rho(\{a_n\}, \overline{\mathbf{0}}) < \epsilon
+    \label{eq:req}
+    \end{equation}
+
+    tal sucesión puede construirse como sigue:
+     \begin{displaymath}
+       a_n = \left\{
+     \begin{array}{lr}
+       1 &  n = n_1 \\
+       0 &  \text{otherwise}
+     \end{array}
+   \right.
+   \end{displaymath}
+
+   con $n_1 (\in \mathbb{N}) \rightarrow \infty$ se satisface (\ref{eq:req}).
+
+
+
+
+    \item[5.] Requerimos entonces probar que, dada una función $f \in PC[a,b]$, $\ \exists g \in S[a,b]$ tal que $d(f,g)<\epsilon$, con $\epsilon$ arbitrariamente pequeño. Considerando un subconjunto $S'[a,b] \subset S[a,b]$ que cumple lo siguiente:
+
+\begin{enumerate}
+    \item Opera sobre particiones $\mathfrak{B}$ regulares, i.e, con espaciado constante e igual a $\Delta t$.
+    \item Se cumple que $\alpha_i = f(t_{i-1}+\frac{\Delta t}{2})$
+\end{enumerate}
+
+luego, considerando las funciones $g \in S'[a,b]$:
+\begin{equation} \label{eq1}
+\begin{split}
+d(f,g) & = \sup_{t\in [a,b]}{\left|f(t)-\sum_{i=1}^n \alpha_i \chi_i(t)\right|} \\
+       & = \max \left(  \sup_{t \in [t_0,t_1)} |f(t)-\alpha_1|, \sup_{t \in [t_1,t_2)} |f(t)-\alpha_2|,\ \ \ldots \ \, \sup_{t \in [t_{n-1},t_n)} |f(t)-\alpha_n| \right)
+\end{split}
+\end{equation}
+
+\noindent y como $f$ es continua en $[a,b]$, entonces:
+
+\begin{equation}
+    \lim_{\Delta t\rightarrow 0} \left|f(t)-f\left(t_i + \frac{\Delta t}{2}\right) \right| = 0; \ \ \ t \in [t_{i-1},t_i), \ \forall i=1:n
+\end{equation}
+
+\noindent implica directamente que $\displaystyle \lim_{\Delta t \rightarrow 0} d(f,g) = 0 $. Dicho de otro modo, es posible hacer la partición de $\mathfrak{B}$ lo suficientemente fina, de modo que se cumpla $d(f,g)<\epsilon$. $\square$
+\end{itemize}
+
+\end{document}

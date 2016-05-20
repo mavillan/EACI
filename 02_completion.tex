@@ -1,0 +1,97 @@
+\documentclass[spanish, fleqn]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts,txfonts}
+\usepackage{mathrsfs}
+\usepackage[colorlinks, urlcolor=blue]{hyperref}
+\usepackage{fourier}
+\usepackage[top = 2.5cm, bottom = 2cm, left = 2cm, right = 2cm]{geometry}
+\usepackage{graphicx}
+
+
+
+
+\title{Elementos de Análisis para Computación e Informática}
+
+\author{Martín Villanueva}
+\date{12 de abril 2016}
+
+\begin{document}
+\maketitle
+
+\section{Definiciones}
+Se listan a continuación definiciones utilizadas en este artículo
+
+\begin{itemize}
+    \item \textbf{Norma $p$-ádica}: Para cualquier $x = \frac{a}{b} \neq 0$ ($a,b \in \mathbb{Z},\ b\neq 0$) podemos realizar la factorización prima correspondiente y escribir $x = p^n \frac{a'}{b'}$ para $p$ primo, $n \in \mathbb{Z}$, y con $a'$ y $b'$ primos relativos a $p$. Luego se define $|x|_p = p^{-n}$ ($|0|_p = 0$), la cual es una norma que satisface las siguientes propiedades
+    \begin{enumerate}
+        \item $|x|_p \geq 0$. Por definición $|x|_p = 1/p^n > 0$. El caso $x=0$ satisface la igualdad.
+        \item $|x|_p = 0 \leftrightarrow x = 0$. Por definición.
+        \item $|x y|_p = |x|_p |y|_p$. Sean $x = p^m a/b$ e $y = p^n c/d$, luego $|x y|_p = \left|p^{m+n} \frac{ac}{bd}\right|_p = p^{-(m+n)} = p^{-m} p^{-n} = |x|_p |y|_p$.
+        \item $|x+y|_p \leq |x|_p + |y|_p$. Considerando la misma representación que en el punto anterior, y fijando (sin pérdida de generalidad) $m > n$:
+        \begin{equation*}
+            \left| x+y \right|_p = \left| p^m \frac{a}{b} + p^n \frac{c}{d} \right|_p = \left|p^n \left(p^{m-n}\frac{a}{b} + \frac{c}{d} \right) \right|_p = \left|p^n \left(\frac{a d p^{m-n} + b c}{bd} \right) \right|_p = p^{-n} = |y|_p = \max(|x|_p, |y|_p)
+        \end{equation*}
+        este resultado es \textit{más fuerte} que la desigualdad triangular, y la implica directamente.
+    \end{enumerate}
+
+    \item \textbf{Métrica $p$-ádica}: La norma anterior induce de manera directa la métrica $d_p(x,y) = |x-y|_p$ correspondiente.
+\end{itemize}
+
+\section{Completación $\mathbb{Q}_p$ de $\mathbb{Q}$ con respecto a la métrica $p$-ádica.}
+
+Como vimos anteriormente, cuando se consideran sucesiones de Cauchy sobre el e.m (\textit{espacio métrico}) $(\mathbb{Q}, |\cdot|)$ (con métrica Euclidiana) es posible construir $\mathbb{R}$ como una completación de $\mathbb{Q}$. Estamos ahora interesados en el e.m $(\mathbb{Q}, d_p)$.
+\\
+
+Consideremos las sucesiones de Cauchy sobre los racionales $CF(\mathbb{Q})$, las cuales sabemos podemos equipar con estructura de espacio vectorial $(CF(\mathbb{Q}), +, \cdot)$. Definimos entonces las \textit{sucesiones nulas} $NF(\mathbb{Q})$ como sigue:
+\begin{equation*}
+    \{a_n\} \in NF(\mathbb{Q}) \ \text{ ssi } \ \forall \epsilon>0, \exists N \in \mathbb{N}: \forall n \in \mathbb{N} \ \text{con } \ n \geq N, \ \ |a_n|_p < \epsilon
+\end{equation*}
+diremos entonces que $\{a_n\}, \{b_n\} \in CF(\mathbb{Q})$ estan $\sim -$relacionadas ssi $\{a_n - b_n \}$ es una sucesión nula:
+\begin{equation*}
+    \{a_n\} \sim \{b_n\} \leftrightarrow \{a_n\}-\{b_n\}=\{a_n-b_n\} \in NF(\mathbb{Q})
+\end{equation*}
+la cual claramente es una relación de equivalencia. Si se denota $\overline{\{a_n\}}$ como la clase de equivalencia de la sucesión $\{a_n\} \in CF(\mathbb{Q})$, entonces el conjunto cociente
+\begin{equation*}
+    CF(\mathbb{Q})/\sim \ := \left\{ \overline{\{a_n\}}: \{a_n\} \in CF(\mathbb{Q}) \right\}
+\end{equation*}
+se define como $\mathbb{Q}_p$. Los siguientes aspectos deben ser notados:
+
+\begin{enumerate}
+    \item $\mathbb{Q} \subset \mathbb{Q}_p$. Consideramos las sucesiones de Cauchy constantes $\{a_n\}$ con $a_n = x \in \mathbb{Q},\  \forall n \in \mathbb{N}$. Claramente la diferencia de dos sucesiones constantes no puede ser nula, por lo tanto cada una de estas es su propio representante en las clases de equivalencias de $CF(\mathbb{Q})/\sim$, i.e, existe una inyección de $\mathbb{Q}$ a $\mathbb{Q}_p$.
+    \item $(\mathbb{Q}_p, d_p)$ es completo. Puede ser mostrado (\textit{to-do}), que cualquier elemento en $\mathbb{Q}_p$ puede ser escrito de manera única como $ \displaystyle \sum_{i=k}^{\infty} \alpha_i p^{i} $
+    con $\alpha_i \in \{0, 1, \ldots, p-1\} \ \forall i$ y $\alpha_k>0 \ k \in \mathbb{Z}$. Luego pueden construirse sucesiones de Cauchy sobre $\mathbb{Q}_p$ del siguiente modo:
+    \begin{equation*}
+        \{a_n\} = \left\{ a_n := \sum_{i=k}^n \alpha_i p^i \ \ \ \forall n \in \mathbb{N}: n\geq k  \right\}
+    \end{equation*}
+
+    El que esta sucesión converge es intuitivo; Cada nuevo término de la sucesión agrega una potencia mayor de $p$ y por lo tanto es $p$-ádicamente más pequeño. Veámoslo más formalmente, notando en primer lugar la siguiente propiedad:
+    \begin{equation}
+        |a_n|_p = \left| \sum_{i=k}^{n}\alpha_i p^i \right|_p = \max(|\alpha_i p^i|_p\ \ i=k:n) = \max(|p^i|_p\ \ i=k:n)=\frac{1}{p^k}
+    \label{eq:prop}
+    \end{equation}
+    y luego tomemos dos términos de la sucesión $a_r, a_s$ con $r>s$, entonces haciendo uso de (\ref{eq:prop}), su distancia $p-$ádica es:
+    \begin{equation}
+        |a_r - a_s|_p = \left| \sum_{i=k}^{r}\alpha_i p^i - \sum_{i=k}^{s}\alpha_i p^i \right|_p = \left| \sum_{i=s+1}^{r}\alpha_i p^i \right|_p = \frac{1}{p^{s+1}}
+    \end{equation}
+    por lo tanto, si se escogen $r,s$ lo suficientemente grandes ($>N$), su distancia puede hacerse arbitrariamente pequeña ($<\epsilon$). Esto demuestra que tales sucesiones convergen, y además convergen en $Q_p$, logrando entonces la completitud.
+\end{enumerate}
+
+\section{¿Es $\mathbb{Q}_p = \mathbb{Q}_q$?}
+
+Sean $p,q$ dos primos distintos, y consideremos un elemento pertenecientes a ambos conjuntos: $x \in \mathbb{Q}_p$ y $x \in \mathbb{Q}_q$. Tal elemento está asociado a las clases de equivalencias siguientes
+\begin{align*}
+    (x \in \mathbb{Q}_p):\  x = \overline{\sum_{i=k_p}^{\infty} \alpha_i p^i} =\{ \text{clase de equivalencia de sucesiones } CF(\mathbb{Q}_p)  \text{ que convergen a x} \} \\
+    (x \in \mathbb{Q}_q):\  x = \overline{\sum_{i=k_q}^{\infty} \alpha_i q^i} =\{ \text{clase de equivalencia de sucesiones } CF(\mathbb{Q}_q)  \text{ que convergen a x} \}
+\end{align*}
+de antemano conocemos $\{a_n\}$ y $\{b_n\}$ dos representantes de cada clase respectivamente:
+\begin{align*}
+    \{a_n\} = \left\{ a_n := \sum_{i=k_p}^n \alpha_i p^i \ \ \ \forall n \in \mathbb{N}: n\geq k_p  \right\} \\
+    \{b_n\} = \left\{ b_n := \sum_{i=k_q}^n \alpha_i q^i \ \ \ \forall n \in \mathbb{N}: n\geq k_q  \right\}      
+\end{align*}  
+ambas sucesiones son intrínsecamente distintas, por lo tanto también deben serlo las clases correspondientes. Se concluye entonces que $\mathbb{Q}_p \neq \mathbb{Q}_q$.
+
+\textbf{Nota:} Intuitivamente ambos conjuntos poseen los mismos elementos, pero con una representación diferente. Es por lo tanto de esperar que exista un \textit{isomorfismo} entre ambos.
+
+\end{document}

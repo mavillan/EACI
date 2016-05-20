@@ -1,0 +1,107 @@
+\documentclass[spanish, fleqn]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts,txfonts}
+\usepackage{mathrsfs}
+\usepackage[colorlinks, urlcolor=blue]{hyperref}
+\usepackage{fourier}
+\usepackage[top = 2.5cm, bottom = 2cm, left = 2cm, right = 2cm]{geometry}
+\usepackage{graphicx}
+
+
+
+
+\title{\textsc{Elementos de Análisis para Computación e Informática} \\
+	\textsc{Examen Final}}
+
+\author{Martín Villanueva}
+\date{23 de Mayo 2016}
+
+\begin{document}
+\maketitle
+
+
+\section*{\textsc{Tareas}}
+
+
+\begin{description}
+
+	\item[\textsc{Tarea 1.}] Sean $(X , \sigma)$ y $(X, \sigma')$ espacios métricos y quasimétricos respectivamente. Denotemos a la topología generada/inducida por $\sigma$ por:
+	\begin{align*}
+		\mathcal{F} = \{ A \subset X: \ A \ \text{es un abierto, i.e:} \ \ \forall x \in A, \ \exists \delta>0: \ B_{\sigma}(x,\delta) \subset A \}
+	\end{align*}
+	donde adicionalmente sabemos que una base para esta topología es:
+	\begin{align*}
+		B = \{ B_{\sigma}(x, \sigma): \ x \in X, \ \delta \ \in \mathbb{R}_{0}^{+}  \}
+	\end{align*}
+	y también consideremos la siguiente \textit{posible} base para dicha topología:
+	\begin{align*}
+		B' = \{ B_{\sigma'}(x,\delta): \ x \in X, \ \delta \ \in  \mathbb{R}_{0}^{+} \cup \{ \infty \} \}
+	\end{align*}
+	se puede ver claramente que $B \subset B'$, pues $B'$ contiene los mismos miembros que $B$, más las bolas de radio infinito (\textit{que abarcan todo el espacio!}). Además como $B$ es una base para $\mathcal{F}$, cualquier abierto $\in \mathcal{F}$ puede escribirse como una reunión de miembros de $B$.
+
+	Sea $\mathcal{A}$ un conjunto indexador (no necesariamente contable, ni finito), entonces cualquier reunión de bolas \newline $ \bigcup_{\alpha \in \mathcal{A}} B_{\alpha}  \ (B_{\alpha} \in B)$, puede formarse también con miembros de $B'$, pues $B \subset B'$. 
+	Consideremos ahora reuniones sobre $B'$. Si entre los miembros no hay bolas de radio infinito, el resultado es análogo 
+	al anterior. Consideremos entonces el caso de una reunión con al menos una bola de radio infinito $B_{\sigma'}(x_0, \infty)$:
+	\begin{align*}
+		\bigcup_{\alpha \in \mathcal{A}} B_{\alpha} \ (B_{\alpha} \in B') = B_{\sigma'}(x_0, \infty)
+	\end{align*}
+	tal resultado puede obtenerse por reuniones de miembros en $B$ como sigue:
+	\begin{align*}
+		\bigcup_{\delta > 0} B_{\sigma}(x_0, \delta)
+	\end{align*}
+
+	Luego, hemos probado que cada reunión de miembros en una base, puede formarse con los miembros de la otra (y viceversa). Por lo tanto ambas son bases de $\mathcal{F}$, y entonces $\sigma$ y $\sigma'$ generan/inducen la misma topología.
+
+
+	\item[\textsc{Tarea 2.}]
+
+	\item[\textsc{Tarea 3.}]
+
+	\item[\textsc{Tarea 4.}] Veamos cada punto separadamente:
+	\begin{enumerate}
+		\item $\displaystyle \int_{\mathbb{R}} |\chi_{[-1,1]}(t)|\ dt = \int_{-1}^{1} |1| dt = 2 < \infty$, por lo tanto $\chi_{[-1,1]} \in L^1$.
+		\item $\displaystyle \widehat{\chi_{[-1,1]}(t)} = \int_{\mathbb{R}} \chi_{[-1,1]}(t) e^{-2 \pi i \omega t} dt = \int_{-1}^{1} e^{-2 \pi i \omega t} dt$. Haciendo uso de la identidad de Euler:
+		\begin{align*}
+			\int_{-1}^{1} e^{i (-2 \pi \omega t)} dt = \int_{-1}^{1} \cos(-2 \pi \omega t) + i \sin(-2 \pi \omega t) dt
+		\end{align*}
+		tomando en cuenta la paridad de las funciones (\textit{y que la integral de una función impar en un intervalo simétrico es nula}):
+		\begin{align*}
+			\ldots = \int_{-1}^{1} \cos(2 \pi \omega t) dt - i \underbrace{\int_{-1}^{1} \sin(2 \pi \omega t) dt]}_{= 0 \ \text{por imparidad}} = \frac{\sin(2 \pi \omega t)}{2 \pi \omega} \bigg|_{-1}^{1} = \frac{\sin(2 \pi \omega)}{\pi \omega}
+		\end{align*}
+		\item
+
+	\end{enumerate}
+
+	\item[\textsc{Tarea 5.}]
+
+	\item[\textsc{Tarea 6.}]
+ 
+	\item[\textsc{Tarea 7.}]
+
+	\item[\textsc{Tarea 8.}] Sea $f \in \mathcal{C}_{\downarrow}^{\infty}(\mathbb{R},\mathbb{C})$ una función con soporte compacto $\text{supp}(f) \subset [a,b] \subset [0,T]$ ($0<a<b<T$), con la respectiva prolongación periódica (de periodo $T$)
+	\begin{align}
+	 	g(x) = \sum_{n \in \mathbb{Z}} f(x - n T), \ \ \ \ x \in \mathbb{R}.
+	 	\label{eq:prolongacion}
+	\end{align} Considerando la norma uniforme $||f||_{\infty} := \sup_{x \in \mathbb{R}} |f(x)|$. Como ya probamos anteriormente (Weierstrass):
+	\begin{align*}
+		f \in \mathcal{C}_{\downarrow}^{\infty}(\mathbb{R},\mathbb{C}) \Rightarrow 0 \leq ||f||_{\infty} < \infty.
+	\end{align*}
+	Debido a la construcción de la prologación periódica (\ref{eq:prolongacion}), se sabe que no existen traslapes entre
+	las \textit{copias} de $f$ en los distintos periodos. Entonces:
+	\begin{align*}
+		||g||_{\infty} = \sup_{x \in \mathbb{R}} |g(x)| = \sup_{x \in \mathbb{R}} \left|\sum_{n \in \mathbb{Z}} f(x - n T)\right| \stackrel{(\#)}{=} \sup_{x \in \mathbb{R}} |f(x-nT)|\ \ (\forall n \in \mathbb{Z})= \sup_{x \in \mathbb{R}} |f(x)| = ||f||_{\infty} < \infty 
+	\end{align*}
+	donde $(\#)$ es posible, pues como se hizo notar, todas las copias de $f$ son iguales y sin traslapes. Puesto que $||g||_{\infty} < \infty$, se comprueba entonces la convergencie de la serie.
+
+	\item[\textsc{Tarea 9.}] 
+
+\end{description}
+
+
+\section*{\textsc{Referencias}}
+
+
+
+\end{document}
