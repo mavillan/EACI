@@ -55,9 +55,17 @@
 	Luego, hemos probado que cada reunión de miembros en una base, puede formarse con los miembros de la otra (y viceversa). Por lo tanto ambas son bases de $\mathcal{F}$, y entonces $\sigma$ y $\sigma'$ generan/inducen la misma topología.
 
 
+
+
 	\item[\textsc{Tarea 2.}]
 
+
+
+
 	\item[\textsc{Tarea 3.}]
+
+
+
 
 	\item[\textsc{Tarea 4.}] Veamos cada punto separadamente:
 	\begin{enumerate}
@@ -72,13 +80,110 @@
 		\end{align*}
 		\item
 
+	\end{enumerate}En
+
+
+
+
+	\item[\textsc{Tarea 5.}] Veamos por partes:
+	\begin{enumerate}
+		\item Denotemos como $\displaystyle f(t)=e^{-t^2}$ y $\displaystyle g(t)=(1+t^2)^{-1}$. En primer lugar, es fácil notar que las derivadas de $f(t)$ son la misma función multiplicadas por un polinomio (\textit{regla de la cadena}). Cada nueva derivada aumenta en un grado el grado del polinomio respectivo, pues la derivada del exponente es $-2t$.
+		Luego se puede escribir $f^{(n)}(t)=f(t)P_n(t)$, con $P_n$ el polinomio de grado $n$ respectivo. Entonces:
+		\begin{align*}
+			\lim_{|t|\rightarrow \infty} t^p D^q f(t) = \lim_{|t|\rightarrow \infty} t^p P_q(t) f(t) = \lim_{|t|\rightarrow \infty} \widehat{P}_{p+q}(t) f(t) = \lim_{|t|\rightarrow \infty} \frac{\widehat{P}_{p+q}(t)}{e^{t^2}} = 0 \ \ \ \forall \ p,q \in \mathbb{N}_0,
+		\end{align*}
+		lo último debido a que la exponencial crece más rápido que cualquier polinomio en $t \rightarrow \infty$. En segundo lugar, para probar que $g \notin \mathcal{C}^{\infty}(\mathbb{R},\mathbb{C})$, basta mostrar que existe alguna combinación de $p,q \in \mathbb{N}_0$ tales que $t^p D^q g(t) \rightarrow 0$ no se satisface. Veamos para $p=3$ y $q=1$:
+		\begin{align*}
+			\lim_{|t|\rightarrow \infty} \frac{t^3}{1+t^2} \rightarrow \infty,
+		\end{align*}
+		lo que completa la demostración.
+
+		\item
+
+		\item
+
+		\item
 	\end{enumerate}
 
-	\item[\textsc{Tarea 5.}]
+
+
 
 	\item[\textsc{Tarea 6.}]
+
+
+
  
-	\item[\textsc{Tarea 7.}]
+	\item[\textsc{Tarea 7.}] Se listan a continuación algunos ejemplos de funciones $f \in \mathcal{C}_{C}^{\infty}(\mathbb{R},\mathbb{C})$ (la extensión a varias variables se muestra a continuación):
+	\begin{enumerate}
+		\item Un ejemplo clásico es la función \textit{bump}, definida como:
+		\begin{align*}
+		\psi(x) =
+		\begin{cases}
+		e^{\frac{1}{x^2-1}} & |x|<1 \\
+		0 & |x|>= 1,
+		\end{cases}	
+		\end{align*}
+		cuya grafica se ve en Figura \ref{fig:cbump}. Esta puede ser fácilmente extendida a otros invervalos de compacidad:
+		\begin{align*}
+		\widehat{\psi}(x) =
+		\begin{cases}
+		e^{\frac{1}{(x-a)^2-1}} & |x|<r \\
+		0 & |x|>= r,
+		\end{cases}	
+		\end{align*}
+		que tiene soporte compacto en $[a-r, a+r]$ con $a,r \in \mathbb{R}$. 
+
+	\begin{figure}[htpb!]
+	\centering
+	\includegraphics[width=10cm]{bump}
+	\caption{Gráfico de función \textit{bump} clásica.}
+	\label{fig:cbump}
+	\end{figure}
+
+	\item Otra construcción interesante considera a la función $\displaystyle f(x) = e^{\frac{-1}{x}}$, cuya ``gracia'' es que está en $\mathcal{C}^{\infty}$ y $f(0)=0$. Con esta es posible definir:
+	\begin{align}
+		\phi(x) = \frac{f(x)}{f(x)-f(1-x)}
+	\label{eq:trick}
+	\end{align}
+	la cual tambien pertenece a $\mathcal{C}^{\infty}$, pero ademas $\phi(0)=0$ y $\phi(1)=1$. Entonces una función de soporte compacto se puede construir como sigue:
+	\begin{align*}
+		\psi(x) =
+		\begin{cases}
+		0 & x \leq 0 \\
+		\phi(x) & 0 < x <1 \\
+		1 & 1 \leq x \leq a \\
+		\phi(-(x-[a+1])) & a < x < a+1 \\
+		0 & x \geq a+1
+		\end{cases}	
+	\end{align*}
+	donde $a \in \mathbb{R}\ (> 1)$. Que básicamente consiste en poner la ``copia'' invertida de $\phi$ (respecto al eje $y$) y trasladada a la derecha en $a+1$, y definiendo el valor de la función en el intervalo intermedio $[1,a]$ como $1$ para asegurar la continuidad. En la Figura \ref{fig:const} se muestra esta contrucción con $a=2$.
+	\begin{figure}[htpb!]
+	\centering
+	\includegraphics[width=10cm]{construction}
+	\caption{Construcción de función de soporte compacto.}
+	\label{fig:const}
+	\end{figure}
+	
+	Notar que la misma construcción puede realizarse siguiendo el mismo procedimiento y usando (\ref{eq:trick}), pero con
+	alguna otra función $f$ que cumpla $f \in \mathcal{C}^{\infty}$ y $f(0)=0$.
+
+	\end{enumerate}
+
+	Por último, dada una función $\psi \in \mathcal{C}_{C}^{\infty}(\mathbb{R},\mathbb{C})$ con soporte $[a,b] \ \text{y} \ a,b \in \mathbb{R}$, esta puede ser fácilmente extendida a una función $\in \mathcal{C}_{C}^{\infty}(\mathbb{R}^n,\mathbb{C})$, bajo la siguiente construcción:
+	\begin{align}
+	\Phi(x_1,x_2,\ldots,x_n) = \psi(x_1)\ \psi(x_2)\ \cdots \ \psi(x_n),
+	\label{eq:ndbump}
+	\end{align}
+	cuyo soporte compacto es $[a,b]\times \stackrel{n-2 \text{ veces}}{\ldots} \times [a,b]=[a,b]^n$. En la Figura \ref{fig:3dbump} se muestra tal construcción para la función \textit{bump} clásica en dos variables.
+	
+	\begin{figure}[htpb!]
+	\centering
+	\includegraphics[width=10cm]{3dbump}
+	\caption{Gráfico de función \textit{bump} clásica en dos variables.}
+	\label{fig:3dbump}
+	\end{figure}
+
+
 
 	\item[\textsc{Tarea 8.}] Sea $f \in \mathcal{C}_{\downarrow}^{\infty}(\mathbb{R},\mathbb{C})$ una función con soporte compacto $\text{supp}(f) \subset [a,b] \subset [0,T]$ ($0<a<b<T$), con la respectiva prolongación periódica (de periodo $T$)
 	\begin{align}
@@ -94,6 +199,9 @@
 		||g||_{\infty} = \sup_{x \in \mathbb{R}} |g(x)| = \sup_{x \in \mathbb{R}} \left|\sum_{n \in \mathbb{Z}} f(x - n T)\right| \stackrel{(\#)}{=} \sup_{x \in \mathbb{R}} |f(x-nT)|\ \ (\forall n \in \mathbb{Z})= \sup_{x \in \mathbb{R}} |f(x)| = ||f||_{\infty} < \infty 
 	\end{align*}
 	donde $(\#)$ es posible, pues como se hizo notar, todas las copias de $f$ son iguales y sin traslapes. Puesto que $||g||_{\infty} < \infty$, se comprueba entonces la convergencie de la serie.
+
+
+
 
 	\item[\textsc{Tarea 9.}] 
 
