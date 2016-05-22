@@ -80,7 +80,7 @@
 		\end{align*}
 		\item
 
-	\end{enumerate}En
+	\end{enumerate}
 
 
 
@@ -98,6 +98,31 @@
 		\end{align*}
 		lo que completa la demostración.
 
+		\item Utilizando la notación de multi-índices para $\alpha,\beta \in \mathbb{N}_0^n$, se quiere probar que los siguientes dos conjuntos:
+		\begin{align}
+			\mathcal{C}_{\downarrow}^{\infty}(\mathbb{R}^n,\mathbb{C}) &= \left\{ f \in \mathcal{C}^{\infty}(\mathbb{R}^n,\mathbb{C}): x^{\alpha} D^{\beta} f(x) \rightarrow 0, \ \ \text{cuando} \ \ ||x||_2 \rightarrow 0, \ \ \ \forall \alpha,\beta \in \mathbb{N}_0^n \right\} \label{eq:def1} \\
+			\mathcal{S}(\mathbb{R}^n,\mathbb{C}) &= \left\{ f \in \mathcal{C}^{\infty}(\mathbb{R}^n,\mathbb{C}): ||f ||_{\alpha, \beta} = \sup_{x \in \mathbb{R}^n} \left|x^{\alpha} D^{\beta} f(x)\right| < \infty, \ \ \ \forall \alpha,\beta \in \mathbb{N}_0^n \right\} \label{eq:def2}
+		\end{align}
+		corresponden a definiciones equivalentes del mismo conjunto. Partamos de $\mathcal{C}_{\downarrow}^{\infty}(\mathbb{R}^n,\mathbb{C})$. Desde la definición del límite, notar que $\forall \epsilon$ existe un $M(\epsilon)$ tales que:
+		\begin{align*}
+			| x^{\alpha} D^{\beta} f(x)| < \epsilon, \ \ \text{cuando} \ \ ||x||_2 < M(\epsilon).
+		\end{align*}
+		Adicionalmente puesto que  $x^{\alpha} D^{\beta} f$ es continua en $[-M,M]$, por el Teorema de Weierstrass \cite{Weier}, esta debe alcanzar su máximo en tal intervalo. Entonces:
+		\begin{align*}
+			|x^{\alpha} D^{\beta} f(x)| \leq \max \left\{ \epsilon, \max_{x\in [-M(\epsilon),M(\epsilon)]} x^{\alpha} D^{\beta} f(x) \right\} < \infty, \ \ \ \forall x \in \mathbb{R}^n,
+		\end{align*}
+		que es equivalente a (\ref{eq:def2}). Partamos ahora de $\mathcal{S}(\mathbb{R}^n,\mathbb{C})$ (el cual existe y es finito). En primer lugar, denotemos a $\displaystyle \sup_{x \in \mathbb{R}^n} \left|x^{\alpha} D^{\beta} f(x)\right| = C_{\alpha,\beta}$. Si se define $\alpha+1 =(\alpha_1+1, \alpha_2+2, \cdots, \alpha_n+1)$, entonces:
+		\begin{align*}
+			{Si} \ \ \  \sup_{x \in \mathbb{R}^n} \left|x^{\alpha+1} D^{\beta} f(x)\right| < \infty
+			\Rightarrow \left|x^{\alpha+1} D^{\beta} f(x)\right| \leq C_{\alpha+1,\beta} < \infty
+			\Rightarrow  \left|x^{\alpha} D^{\beta} f(x)\right| \leq \frac{C_{\alpha+1,\beta}}{|x_1 \cdots x_n|},
+		\end{align*}
+		para todo $x \in \mathbb{R^n}$. Y luego (usando el Teorema de Acotamiento \cite{Squeeze}):
+		\begin{align*}
+			\lim_{||x||_2 \rightarrow 0} \frac{C_{\alpha+1,\beta}}{|x_1 \cdots x_n|} = 0 \Longrightarrow x^{\alpha} D^{\beta} f(x)\rightarrow 0 \ \ \ \text{cuando} \ \ \ ||x||_2\rightarrow 0,  \ \ \ \forall \alpha,\beta \in \mathbb{N}_0^n,
+		\end{align*}
+		que es la la definición en (\ref{eq:def1}).
+
 		\item
 
 		\item
@@ -108,7 +133,50 @@
 
 
 
-	\item[\textsc{Tarea 6.}]
+	\item[\textsc{Tarea 6.}] Sea $f \in \mathcal{C}_{\downarrow}^\infty(\mathbb{R},\mathbb{C})$, se quiere demostrar que:
+	\begin{align}
+		(2 \pi i \gamma)^p D^q \widehat{f}(\gamma) = \left[D^p (-2 \pi i x)^q f(x)\right]\widehat{} \ \ \ \ \ \forall p,q \in \mathbb{N}_0.
+	\label{eq:teo}
+	\end{align}
+	Para ello se definen las siguientes dos proposiciones:
+	\begin{align*}
+		\mathbf{P}_1(p) &: \ \ (2 \pi i \gamma)^p \widehat{f}(\gamma) = \left[D^p f(x) \right]\widehat{} \ \ \ \ \ \ \ \forall p \in \mathbb{N}_0 \\
+		\mathbf{P}_2(q) &: \ \ D^q \widehat{f}(\gamma) = [(-2 \pi i x)^q f(x)]\widehat{} \ \ \ \ \ \forall q \in \mathbb{N}_0,
+	\end{align*}
+	cuyos casos bases (derivados en \cite{DymMcKean}) son respectivamente:
+	\begin{align}
+		(p=1) &: \ \ (2 \pi i \gamma) \widehat{f}(\gamma) = \left[ D f(x) \right]\widehat{} \label{eq:base1} \\
+		(q=1) &: \ \ D \widehat{f}(\gamma) =  \left[ (-2 \pi i x) f(x) \right]\widehat{} \label{eq:base2}.
+	\end{align}
+	Probemos cada una por inducción. Para $\mathbf{P}_1$ se tiene:
+	\begin{align*}
+		(2 \pi i \gamma)^{p+1} \widehat{f}(\gamma) &= (2 \pi i \gamma)(2 \pi i \gamma)^{p} \widehat{f}(\gamma) \\
+		&= (2 \pi i \gamma) \left[ D^p f(x) \right]\widehat{} \\
+		&\stackrel{\text{(\#)}}{=} \ \ \left[ D(D^p f(x)) \right]\widehat{} \\
+		& = \left[ D^{p+1} f(x) \right]\widehat{},
+	\end{align*}
+	donde en (\#) se uso al hipótesis inductiva (\ref{eq:base1}). Se procede de igual modo para $\mathbf{P}_2$:
+	\begin{align*}
+		D^{q+1} \widehat{f}(\gamma) &= D\left[D^{q} \widehat{f}(\gamma)\right] \\
+		&= D_{\gamma} \left[(-2 \pi i x)^q f(x) \right]\widehat{} \\
+		&\stackrel{\text{(\#)}}{=} \ \ \left[(-2 \pi i x)\ (-2 \pi i x)^q f(x) \right]\widehat{} \\
+		&= \left[(-2 \pi i x)^{q+1} f(x) \right]\widehat{},
+	\end{align*}
+	donde en (\#) se uso la hipótesis inductiva (\ref{eq:base2}). Como $\mathbf{P}_1(p)\Rightarrow \mathbf{P}_1(p+1)$,
+	y $\mathbf{P}_2(q) \Rightarrow \mathbf{P}_2(q+1)$, se han demostrado entonces ambas proposiciones. Luego, se puede proceder como sigue:
+	\begin{align*}
+		(2 \pi i \gamma)^p D^q \widehat{f}(\gamma) \ \ \stackrel{\mathbf{P}_2}{=} \ \ (2 \pi i \gamma)^p \left[ (-2 \pi i x)^q f(x) \right]\widehat{} \ \ \stackrel{\mathbf{P}_1}{=} \ \ \left[ D^p (-2 \pi i x)^q f(x) \right]\widehat{}\ \ ,
+	\end{align*}
+	lo que completa la prueba de (\ref{eq:teo}).
+
+	Para la segunda parte, notar que aplicando valor absoluto a (\ref{eq:teo}) se obtiene:
+	\begin{align*}
+		\left|\gamma^p D^q \widehat{f}(\gamma)\right| &= \frac{1}{(2 \pi)^p} \left| \int_{\mathbb{R}} (-2 \pi i)^q D_{x}^{p} x^q e^{-2 \pi i \gamma x} dx \right| \\
+		&\leq (2 \pi)^{q-p} \int_{\mathbb{R}} \left| D_{x}^{p} x^q f(x) \right| dx \\
+		&= (2 \pi)^{q-p} \ \ ||D_{x}^p x^q f(x)||_{L^1} < \infty,
+	\end{align*}
+	puesto que $f \in \mathcal{C}_{\downarrow}^\infty(\mathbb{R},\mathbb{C}) \Rightarrow  D^p x^q f \in \mathcal{C}_{\downarrow}^\infty(\mathbb{R},\mathbb{C})$ y que $\mathcal{C}_{\downarrow}^\infty(\mathbb{R},\mathbb{C}) \subset L^1(\mathbb{R},\mathbb{C})$. Entonces como $\widehat{f} \in \mathcal{C}^\infty(\mathbb{R},\mathbb{C})$ y satisface $\left|\gamma^p D^q \widehat{f}(\gamma)\right| < \infty$, se concluye que $\widehat{f} \in \mathcal{C}_{\downarrow}^\infty(\mathbb{R},\mathbb{C})$, i.e, la transformada de Fourier mapea $\mathcal{C}_{\downarrow}^\infty(\mathbb{R},\mathbb{C})$ en sí mismo.
+
 
 
 
@@ -140,12 +208,12 @@
 	\label{fig:cbump}
 	\end{figure}
 
-	\item Otra construcción interesante considera a la función $\displaystyle f(x) = e^{\frac{-1}{x}}$, cuya ``gracia'' es que está en $\mathcal{C}^{\infty}$ y $f(0)=0$. Con esta es posible definir:
+	\item Otra construcción interesante considera a la función $\displaystyle f(x) = e^{\frac{-1}{x}}$, cuya ``gracia'' es que está en $\mathcal{C}^{\infty}(\mathbb{R})$ y $f(0)=0$. Con esta es posible definir:
 	\begin{align}
 		\phi(x) = \frac{f(x)}{f(x)-f(1-x)}
 	\label{eq:trick}
 	\end{align}
-	la cual tambien pertenece a $\mathcal{C}^{\infty}$, pero ademas $\phi(0)=0$ y $\phi(1)=1$. Entonces una función de soporte compacto se puede construir como sigue:
+	la cual tambien pertenece a $\mathcal{C}^{\infty}(\mathbb{R})$, pero ademas $\phi(0)=0$ y $\phi(1)=1$. Entonces una función de soporte compacto se puede construir como sigue:
 	\begin{align*}
 		\psi(x) =
 		\begin{cases}
@@ -165,7 +233,7 @@
 	\end{figure}
 	
 	Notar que la misma construcción puede realizarse siguiendo el mismo procedimiento y usando (\ref{eq:trick}), pero con
-	alguna otra función $f$ que cumpla $f \in \mathcal{C}^{\infty}$ y $f(0)=0$.
+	alguna otra función $f$ que cumpla $f \in \mathcal{C}^{\infty}(\mathbb{R})$ y $f(0)=0$.
 
 	\end{enumerate}
 
@@ -208,8 +276,8 @@
 \end{description}
 
 
-\section*{\textsc{Referencias}}
-
+\bibliographystyle{plain}
+\bibliography{referencias}
 
 
 \end{document}
