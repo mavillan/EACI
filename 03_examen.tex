@@ -16,7 +16,7 @@
 	\textsc{Examen Final}}
 
 \author{Martín Villanueva}
-\date{23 de Mayo 2016}
+\date{27 de Mayo 2016}
 
 \begin{document}
 \maketitle
@@ -27,7 +27,7 @@
 
 \begin{description}
 
-	\item[\textsc{Tarea 1.}] Sean $(X , \sigma)$ y $(X, \sigma')$ espacios métricos y quasimétricos respectivamente. Denotemos a la topología generada/inducida por $\sigma$ por:
+	\item[\textsc{Tarea 1.}] Sean $(X , \sigma)$ y $(X, \sigma')$ espacios métricos y \textit{quasimétricos} respectivamente. Denotemos a la topología generada/inducida por $\sigma$ por:
 	\begin{align*}
 		\mathcal{F} = \{ A \subset X: \ A \ \text{es un abierto, i.e:} \ \ \forall x \in A, \ \exists \delta>0: \ B_{\sigma}(x,\delta) \subset A \}
 	\end{align*}
@@ -57,8 +57,29 @@
 
 
 
-	\item[\textsc{Tarea 2.}]
-
+	\item[\textsc{Tarea 2.}] Se definen $(S,\sigma)$ un espacio métrico, el conjunto $E \neq \emptyset$, el conjunto de funciones $\mathcal{F}(E,S) = \left\{f: E \rightarrow S \right\}$, y la aplicación:
+	\begin{align*}
+		\Sigma(f,g) = \sup_{t \in E}\ \sigma \left(f(t),g(t)\right), \ \ \ \ \text{con} \ \ f,g \in \mathcal{F}(E,S),
+	\end{align*}
+	donde se quiere probar que $(\mathcal{F}(E,S),\Sigma)$ es un espacio \textit{quasimétrico}. Ya que $\sigma \left(f(t),g(t)\right)$ $(\forall t \in E)$ puede no estar acotado superiormente, entonces $\Sigma(f,g)$ puede ser infinita. Se verifica que $\Sigma$ cumple los axiomas usuales para una métrica, para $f,g,h \in \mathcal{F}(E,S$:
+	\begin{enumerate}
+	 	\item $\left(\Sigma(f,g) \geq 0 \right)$. Se sigue directamente desde el codominio de $\sigma : S \times S \rightarrow \mathbb{R}_0^+$.
+	 	\item $\left(\Sigma(f,g) = 0 \leftrightarrow f=g \right)$. Como $\Sigma(f,g) = 0 \leftrightarrow \displaystyle \sup_{t \in E} \  \sigma\left(f(t), g(t) \right) = 0$, por la definición de supremo esto es equivalente a $\sigma\left( f(t), g(t) \right) \leq 0$. Ya que $\sigma$ es un métrica de $S$, la única posibilidad es que $\sigma\left(f(t),g(t)\right)=0 \leftrightarrow f(t) = g(t)$.
+	 	\item $\left(\Sigma(f,g) = \Sigma(g,f) \right)$. Dada la simetría de la métrica $\sigma$, entonces:
+	 	\begin{align*}
+	 		\Sigma(f,g) = \sup_{t \in E} \ \sigma\left(f(t), g(t) \right) = \sup_{t \in E} \ \sigma\left(g(t), f(t) \right) = \Sigma(g,f).
+	 	\end{align*}
+	 	\item $\left(\Sigma(f,g) \leq \Sigma(f,h) + \Sigma(h,g) \right)$. Si se fija un $t_0 \in E$, luego para $f(t_0), g(t_0), h(t_0) \in S$ se cumple:
+	 	\begin{align}
+	 		\sigma\left(f(t_0), g(t_0) \right) \leq \sigma\left(f(t_0), h(t_0) \right) + \sigma\left(h(t_0), g(t_0) \right),
+	 	\label{eq:triang}
+	 	\end{align}
+	 	pues $\sigma$ es métrica. Como (\ref{eq:triang}) es válida $\forall t_0 \in E$, entonces se verifica que:
+	 	\begin{align*}
+	 		\sup_{t\in E} \ \sigma\left(f(t), g(t) \right) \leq \sup_{t\in E} \ \sigma\left(f(t), h(t) \right) + \sup_{t\in E} \ \sigma\left(h(t), g(t) \right).
+	 	\end{align*}
+	\end{enumerate}
+	Dado que $\Sigma: \mathcal{F}(E,S) \times \mathcal{F}(E,S) \rightarrow [0,\infty]$ y verifica los axiomas de métrica, entonces $\left(\mathcal{F}(E,S), \Sigma \right)$ es un espacio \textit{quasimétrico}.
 
 
 
