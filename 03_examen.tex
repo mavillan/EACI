@@ -99,7 +99,20 @@
 		\begin{align*}
 			\ldots = \int_{-1}^{1} \cos(2 \pi \omega t) dt - i \underbrace{\int_{-1}^{1} \sin(2 \pi \omega t) dt]}_{= 0 \ \text{por imparidad}} = \frac{\sin(2 \pi \omega t)}{2 \pi \omega} \bigg|_{-1}^{1} = \frac{\sin(2 \pi \omega)}{\pi \omega}
 		\end{align*}
-		\item
+		\item Para probar que $\displaystyle \widehat{\chi_{[-1,1]}(t)} \notin L^1$, basta probar que $ \displaystyle \int_{-\infty}^{+\infty} \left|\widehat{\chi_{[-1,1]}(t)}(\omega)\right| d\omega$ diverge. Para ello se considera que:
+		\begin{align*}
+			\int_{-\infty}^{+\infty} \left|\widehat{\chi_{[-1,1]}(t)}(\omega)\right| d\omega \geq \int_{0}^{+\infty} \left|\widehat{\chi_{[-1,1]}(t)}(\omega)\right| d\omega.
+		\end{align*}
+		Dada la continuidad de $\displaystyle \widehat{\chi_{[-1,1]}(t)} = \frac{\sin(2 \pi \omega)}{\pi \omega}$, es posible hacer la siguiente descomposición:
+		\begin{align*}
+			\int_{0}^{+\infty} \left| \frac{\sin(2 \pi \omega)}{\pi \omega} \right| d\omega &= \lim_{n\rightarrow \infty} \sum_{k=1}^{n} \int_{k-1}^{k} \left|\frac{\sin(2 \pi \omega)}{\pi \omega}\right| d\omega \\
+			&= \lim_{n\rightarrow \infty} \sum_{k=1}^{n} \int_{k-1}^{k} \frac{\left| \sin(2 \pi \omega) \right|}{\pi \omega} d\omega \\
+			&\geq \lim_{n\rightarrow \infty} \sum_{k=1}^{n} \int_{k-1}^{k} \frac{\left| \sin(2 \pi \omega) \right|}{\pi k} d\omega \\
+			&=  \frac{1}{\pi} \lim_{n\rightarrow \infty} \sum_{k=1}^{n} \frac{1}{k} \underbrace{\int_{k-1}^{k} \left| \sin(2 \pi \omega) \right| d\omega}_{= \frac{2}{\pi} \ \ (*)} \\
+			&= \frac{2}{\pi^2} \lim_{n\rightarrow \infty} \sum_{k=1}^{n} \frac{1}{k} = \infty,
+		\end{align*}
+		donde $(*)$ resulta de integrar $|\sin(2 \pi w)|$ sobre un periodo cualquiera de la función, y la divergencia proviene de la divergencia de la serie harmónica.
+
 
 	\end{enumerate}
 
@@ -144,9 +157,44 @@
 		\end{align*}
 		que es la la definición en (\ref{eq:def1}).
 
-		\item
+		\item Se quiere probar que $\mathcal{S}(\mathbb{R},\mathbb{C})$ es un espacio normado completo. Para ello se definen las operaciones $(+,\cdot)$ de forma usual, dando estructura de espacio vectorial a $\displaystyle \left(\mathcal{S}(\mathbb{R},\mathbb{C}),+,\cdot \right)$. Se verifica en primer lugar que $||\cdot||_{\alpha,\beta}$ es una norma ($a \in \mathbb{C}$, y $f,g \in \mathcal{S}(\mathbb{R},\mathbb{C})$): 
+		\begin{enumerate}
+			\item $\left( ||a \cdot f||_{\alpha,\beta} = |a| \ ||f||_{\alpha,\beta} \right)$. Sigue directamente de la definición:
+			\begin{align*}
+				||a \cdot f||_{\alpha,\beta} = \sup_{x \in \mathbb{R}^n} \left| x^{\alpha} D^{\beta} a f(x) \right| = \sup_{x \in \mathbb{R}^n} \left| a x^{\alpha} D^{\beta} f(x) \right| = |a| \sup_{x \in \mathbb{R}^n} \left| x^{\alpha} D^{\beta} f(x) \right| = |a| \ ||f||_{\alpha,\beta} 
+			\end{align*}
+			\item $\left( ||f+g||_{\alpha,\beta} \leq ||f||_{\alpha,\beta} + ||g||_{\alpha,\beta }\right)$. Sigue directamente de la linealidad de la derivada $D^{\beta}$:
+			\begin{align*}
+				 ||f+g||_{\alpha,\beta} =  \sup_{x \in \mathbb{R}^n} \left| x^{\alpha} D^{\beta}\left( f(x)+g(x) \right) \right| &= \sup_{x \in \mathbb{R}^n} \left| x^{\alpha} D^{\beta} f(x) +  x^{\alpha} D^{\beta} g(x) \right| \\ &\leq \sup_{x \in \mathbb{R}^n} \left\{ \left| x^{\alpha} D^{\beta} f(x) \right| +  \left|  x^{\alpha} D^{\beta} g(x) \right| \right\}\\ &= \sup_{x \in \mathbb{R}^n}  \left| x^{\alpha} D^{\beta} f(x) \right| + \sup_{x \in \mathbb{R}^n}  \left|  x^{\alpha} D^{\beta} g(x) \right| = ||f||_{\alpha,\beta} + ||g||_{\alpha,\beta }
+			\end{align*}
+			\item $\left( ||f||_{\alpha,\beta}=0 \Leftrightarrow f \equiv 0 \right)$. Esta requiere un poco más de tratamiento. Notar que $||f||_{\alpha,\beta}=0 \Leftrightarrow x^{\alpha}D^{\beta} f(x) = 0 \ \ \forall x \in \mathbb{R}^n$. Luego para todo $x \neq \mathbf{0}$ se debe cumplir $D^{\beta} f(x)=0$, y dada la continuidad de $f \in \mathcal{S}(\mathbb{R},\mathbb{C}) \subset C^{\infty}(\mathbb{R},\mathbb{C})$, entonces $D^{\beta} f(x)=0 \ \ \forall x \in \mathbb{R}^n$ y se deduce que $f$ tiene estructura polinomial. Ya que $f(x)\rightarrow 0$ para $||x||_2 \rightarrow \infty$, la única posibilidad es que $f \equiv 0$.
+		\end{enumerate}
 
-		\item
+		\item Sean $f,g  \in \mathcal{S}(\mathbb{R},\mathbb{C})$. Verifiquemos en primer lugar que $f\cdot g \in \mathcal{S}(\mathbb{R},\mathbb{C})$. Para ello se hace uso de la \textit{regla generalizada de Leibniz} \cite{Leibniz}:
+		\begin{align}
+			D^n \left(f(t)g(t) \right) = \sum_{k=0}^n {n \choose k} f^{(k)}(t) g^{(n-k)}(t).
+		\label{eq:leibniz}
+		\end{align}
+		Ocupando ahora (\ref{eq:leibniz}), se verifica la definición (\textit{equivalente}) de $\mathcal{S}(\mathbb{R},\mathbb{C})$:
+		\begin{align*}
+			\lim_{|t|\rightarrow \infty} t^p D^q \left( f(t)g(t) \right)
+			&= \lim_{|t|\rightarrow \infty} t^p \sum_{k=0}^q {q \choose k} f^{(k)}(t) g^{(q-k)}(t) \\
+			&= \lim_{|t|\rightarrow \infty} \sum_{k=0}^q {q \choose k} t^p f^{(k)}(t) g^{(q-k)}(t) \\
+			&\stackrel{\text{(\#)}}{=} \sum_{k=0}^q {q \choose k}\lim_{|t|\rightarrow \infty}  \underbrace{t^p f^{(k)}(t)}_{\rightarrow 0} \underbrace{g^{(q-k)}(t)}_{\rightarrow 0} = 0 \ \ \ \ \ \forall p,q \in \mathbb{N}_0,
+		\end{align*}
+		donde (\#) es posible pues cada límite existe, y además son nulos pues $f^{(k)},g^{(q-k)} \in \mathcal{S}(\mathbb{R},\mathbb{C})$.
+
+		Para verificar que $f * g \in \mathcal{S}(\mathbb{R},\mathbb{C})$, se toman en cuenta tres resultados: 1) Que el producto $f \cdot g \in \mathcal{S}(\mathbb{R},\mathbb{C})$ (recien probado), 2) Que la transformada de Fourier mapea $\mathcal{S}(\mathbb{R},\mathbb{C})$ en sí mismo (resultado de \textsc{Tarea 6.}), y 3) lo siguiente:
+		\begin{align*}
+			\widehat{f * g}(\omega) &= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} f(y) g(x-y) dy \right) e^{-2 \pi \i \omega x} dx \\
+			&= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} f(y) g(x-y) e^{-2 \pi \i \omega x} dy \right) dx \\
+			&=  \int_{\mathbb{R}} \left( \int_{\mathbb{R}} f(y) g(x-y) e^{-2 \pi \i \omega x} dx \right) dy \\
+			&= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} g(x-y) e^{-2 \pi \i \omega x} dx \right) f(y) dy \ \ \ \ (z = x-y) \\
+			&= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} g(z) e^{-2 \pi \i \omega (z+y)} dz \right) f(y) dy \\
+			&= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} g(z) e^{-2 \pi \i \omega z} dz \right) f(y) e^{-2 \pi \i \omega y} dy \\
+			&= \int_{\mathbb{R}} f(y) e^{-2 \pi \i \omega y} dy \cdot \int_{\mathbb{R}} g(z) e^{-2 \pi \i \omega z} dz = \widehat{f}(\omega) \cdot \widehat{g}(\omega).
+		\end{align*}
+		Entonces como $f,g \in  \mathcal{S}(\mathbb{R},\mathbb{C}) \Rightarrow \widehat{f},\widehat{g} \in  \mathcal{S}(\mathbb{R},\mathbb{C})$, y luego $\widehat{f * g} = \widehat{f}\cdot \widehat{g} \in  \mathcal{S}(\mathbb{R},\mathbb{C})$, se concluye lo pedido.
 
 		\item
 	\end{enumerate}
