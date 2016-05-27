@@ -186,17 +186,32 @@
 
 		Para verificar que $f * g \in \mathcal{S}(\mathbb{R},\mathbb{C})$, se toman en cuenta tres resultados: 1) Que el producto $f \cdot g \in \mathcal{S}(\mathbb{R},\mathbb{C})$ (recien probado), 2) Que la transformada de Fourier mapea $\mathcal{S}(\mathbb{R},\mathbb{C})$ en sí mismo (resultado de \textsc{Tarea 6.}), y 3) lo siguiente:
 		\begin{align*}
-			\widehat{f * g}(\omega) &= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} f(y) g(x-y) dy \right) e^{-2 \pi \i \omega x} dx \\
-			&= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} f(y) g(x-y) e^{-2 \pi \i \omega x} dy \right) dx \\
-			&=  \int_{\mathbb{R}} \left( \int_{\mathbb{R}} f(y) g(x-y) e^{-2 \pi \i \omega x} dx \right) dy \\
-			&= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} g(x-y) e^{-2 \pi \i \omega x} dx \right) f(y) dy \ \ \ \ (z = x-y) \\
-			&= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} g(z) e^{-2 \pi \i \omega (z+y)} dz \right) f(y) dy \\
-			&= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} g(z) e^{-2 \pi \i \omega z} dz \right) f(y) e^{-2 \pi \i \omega y} dy \\
-			&= \int_{\mathbb{R}} f(y) e^{-2 \pi \i \omega y} dy \cdot \int_{\mathbb{R}} g(z) e^{-2 \pi \i \omega z} dz = \widehat{f}(\omega) \cdot \widehat{g}(\omega).
+			\widehat{f * g}(\omega) &= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} f(y) g(x-y) dy \right) e^{-2 \pi i \omega x} dx \\
+			&= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} f(y) g(x-y) e^{-2 \pi i \omega x} dy \right) dx \\
+			&=  \int_{\mathbb{R}} \left( \int_{\mathbb{R}} f(y) g(x-y) e^{-2 \pi i \omega x} dx \right) dy \\
+			&= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} g(x-y) e^{-2 \pi i \omega x} dx \right) f(y) dy \ \ \ \ (z = x-y) \\
+			&= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} g(z) e^{-2 \pi i \omega (z+y)} dz \right) f(y) dy \\
+			&= \int_{\mathbb{R}} \left( \int_{\mathbb{R}} g(z) e^{-2 \pi i \omega z} dz \right) f(y) e^{-2 \pi i \omega y} dy \\
+			&= \int_{\mathbb{R}} f(y) e^{-2 \pi i \omega y} dy \cdot \int_{\mathbb{R}} g(z) e^{-2 \pi i \omega z} dz = \widehat{f}(\omega) \cdot \widehat{g}(\omega).
 		\end{align*}
 		Entonces como $f,g \in  \mathcal{S}(\mathbb{R},\mathbb{C}) \Rightarrow \widehat{f},\widehat{g} \in  \mathcal{S}(\mathbb{R},\mathbb{C})$, y luego $\widehat{f * g} = \widehat{f}\cdot \widehat{g} \in  \mathcal{S}(\mathbb{R},\mathbb{C})$, se concluye lo pedido.
 
-		\item
+		\item En primer lugar, notar que para que una función $f$ (integrable) pertenezca al espacio $L^p(\mathbb{R}, \mathbb{C})$, debe satisfacer:
+		\begin{align*}
+		 	||f||_{L^p} = \left( \int_{\mathbb{R}} |f(x)|^p dx \right)^{\frac{1}{p}} < \infty  \ \ \ \text{para } 1 \leq p < \infty.
+		\end{align*}
+		Se procede entonces mediante la siguiente construcción:
+		\begin{align*}
+			\int_{\mathbb{R}} \left|f(x)\right|^p dx = \int_{\mathbb{R}} \left((1+x^2)|f(x)|\right)^p\frac{1}{(1+x^2)^p} dx.
+		\end{align*}
+		Dado que $f  \in \mathcal{S}(\mathbb{R},\mathbb{C})$ entonces  $(1+x^2)f(x)$ está acotado, y $\displaystyle \frac{1}{(1+x^2)^p} \leq \frac{1}{1+x^2} \in L^1(\mathbb{R}, \mathbb{C}) \ \text{para } p\geq 1 $. Entonces:
+		\begin{align*}
+			\int_{\mathbb{R}} |f(x)|^p dx \leq ||f||_{2,0}^p \int_{\mathbb{R}} \frac{1}{1+x^2} dx < \infty,
+		\end{align*}
+		donde $\displaystyle \|f\|_{\alpha,\beta} = \underset{x\in\mathbb{R}^n}{\sup} |x^\alpha D^\beta f(x)|$. El caso $p = \infty$ se sigue directamente de  $f \in \mathcal{S}(\mathbb{R},\mathbb{C})$:
+		\begin{align*}
+		 	||f||_{L^\infty} = \sup_{x \in \mathbb{R}} \left|f(x)\right| < \infty.
+		 \end{align*} 
 	\end{enumerate}
 
 
